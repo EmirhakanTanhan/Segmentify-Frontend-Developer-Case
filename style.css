@@ -8,8 +8,8 @@ body {
   display: none;
 }
 
-.active[data-tab-content] {
-  display: block;
+.tab-content-active[data-tab-content] {
+  display: flex;
 }
 
 .wrapper {
@@ -56,6 +56,10 @@ body {
 }
 .tab-group .tab-active:hover {
   background-color: #e3f2fd;
+}
+
+.tab-content {
+  flex-wrap: wrap;
 }
 
 .card {

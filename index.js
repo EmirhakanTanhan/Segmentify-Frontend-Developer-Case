@@ -12,9 +12,9 @@ tabs.forEach(tab => {
         tab.classList.add('tab-active');
 
         tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active');
+            tabContent.classList.remove('tab-content-active');
         });
 
-        target.classList.add('active');
+        target.classList.add('tab-content-active');
     })
 })

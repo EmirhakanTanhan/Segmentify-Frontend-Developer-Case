@@ -132,12 +132,16 @@ const swiper = () => {
 
     new Swiper(".swiper", {
         slidesPerView: "auto",
-        spaceBetween: 10,
+        spaceBetween: 15,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
     });
+}
+
+const notification = () => {
+
 }
 
 

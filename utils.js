@@ -40,8 +40,10 @@ const createRecComponent = ({root}) => {
             root.innerHTML = recSkeletonTemplate(recData);
 
             selectTabs(recData)
-        });
-
+        })
+        .catch((err) => {
+            console.log('Some error occured while loading segmentify: ' + err)
+        })
 }
 
 const recCardTemplate = (target, recData) => {

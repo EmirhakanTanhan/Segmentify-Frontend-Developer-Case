@@ -91,7 +91,6 @@ const recCardTemplate = (target, recData) => {
 }
 
 const recSkeletonTemplate = (recData) => {
-
     return `
     <div class="main">
         <div class="main-title">

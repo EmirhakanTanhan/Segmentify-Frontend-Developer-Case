@@ -1,7 +1,9 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 body {
   background-color: #eaeaea;
   font-family: "Roboto", sans-serif;
+  margin: 0;
 }
 
 [data-tab-content] {
@@ -16,6 +18,11 @@ body {
   padding: 0 35px;
 }
 
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 0 18px;
+  }
+}
 .hidden {
   display: none;
 }
@@ -39,6 +46,12 @@ body {
   top: 1px;
 }
 
+@media screen and (max-width: 768px) {
+  .btn-blue {
+    background-color: #0688fa;
+    width: 160px;
+  }
+}
 .cut-text {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -83,7 +96,20 @@ body {
   color: grey !important;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-wrapper {
+    margin-left: 15px;
+  }
+  .swiper-wrapper .swiper-slide {
+    width: 180px !important;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    display: none !important;
+  }
+}
 .tab-group {
+  padding: 0 35px;
   margin-left: -13px;
   margin-bottom: 15px;
   max-width: 210px;
@@ -128,6 +154,47 @@ body {
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 768px) {
+  .tab-group {
+    display: flex;
+    max-width: unset;
+    padding: 0 18px;
+    margin-left: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #b7b7b7;
+  }
+  .tab-group .tab {
+    padding: 0 13px 18px 13px;
+    position: relative;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  .tab-group .tab:hover {
+    background-color: unset;
+  }
+  .tab-group .tab-active {
+    color: #1a1a1a;
+    background-color: unset;
+  }
+  .tab-group .tab-active:hover {
+    background-color: unset;
+  }
+  .tab-group .tab-active::before {
+    content: none;
+  }
+  .tab-group .tab-active::after {
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    float: none;
+    border-radius: 5px;
+    background-color: #1565c0;
+    width: 100%;
+    height: 4px;
+    content: "";
+  }
+}
 .card {
   max-height: 400px;
   max-width: 200px;
@@ -176,7 +243,7 @@ body {
   padding: 11px 11px;
 }
 .card .card-content .card-title span {
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #353535;
 }
@@ -184,29 +251,60 @@ body {
   background-color: #eeeeee;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 23px;
+  font-size: 1.5rem;
 }
 .card .card-content .card-price span {
   display: block;
   padding-left: 16px;
-  padding-top: 11px;
+  padding-top: 8px;
 }
 .card .card-content .card-label {
   padding: 5px 11px 0 11px;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 500;
+}
+.card .card-content .card-label .product-label-free-shipping {
+  color: #474747;
 }
 .card .card-content .card-label .product-label-free-shipping i {
   color: #03c503;
   padding-right: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 160px;
+  }
+  .card .card-basket-add {
+    display: block;
+  }
+  .card .card-img {
+    max-height: 180px;
+    min-height: 180px;
+  }
+  .card .card-img img {
+    min-width: 160px;
+  }
+  .card .card-content {
+    grid-template-rows: 48px 47px 72px;
+  }
+  .card .card-content .card-label span {
+    color: #6e6e6e;
+  }
+  .card .card-content .card-label span::before {
+    content: "• ";
+    color: #6e6e6e;
+  }
+  .card .card-content .card-label span i {
+    display: none;
+  }
+}
 .main {
   background-color: #fff;
   border-radius: 10px;
   max-width: 1200px;
   min-height: 500px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 .main .main-title {
   padding: 10px 0;
@@ -222,6 +320,24 @@ body {
 .main .main-content .main-content-content {
   /*max-width: 75%;*/
   min-width: 75%;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    border-radius: 0;
+  }
+  .main .main-content {
+    flex-direction: column;
+  }
+  .main .main-content .main-content-nav {
+    display: flex;
+    overflow: scroll;
+    max-width: unset !important;
+  }
+  .main .main-content .main-content-nav::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

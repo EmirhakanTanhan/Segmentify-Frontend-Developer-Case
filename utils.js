@@ -1,30 +1,29 @@
-const selectTabs = (recData) => {
+const initTabs = (recData) => {
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
-    recCardTemplate(tabs[0].dataset.tabKey, recData);
+    //Render first tabs content and initialize the swiper for it
+    renderRecContent(tabs[0].dataset.tabKey, recData);
     swiper();
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = document.querySelector(tab.dataset.tabTarget);
-
-            tabs.forEach(tab => {
-                tab.classList.remove('tab-active');
-            });
-
-            tab.classList.add('tab-active');
-
-            tabContents.forEach(tabContent => {
-                tabContent.classList.remove('tab-content-active');
-            });
-
-            target.classList.add('tab-content-active');
-
-            recCardTemplate(tab.dataset.tabKey, recData);
-            swiper();
+    //Add event listener to every tab
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+        //Remove and add tab-active to the tabs
+        tabs.forEach(tab => {
+            tab.classList.remove('tab-active');
         });
-    });
-}
+        tab.classList.add('tab-active');
+
+        //Remove and add tab-content-active to the tab contents
+        tabContents.forEach(tabContent => {
+            tabContent.classList.remove('tab-content-active');
+        });
+        document.querySelector(tab.dataset.tabTarget).classList.add('tab-content-active');
+
+        //Render cards and then initialize swiper
+        renderRecContent(tab.dataset.tabKey, recData);
+        swiper();
+    }));
+};
 
 const segmentifyLoad = async () => {
     const response = await fetch('product-list.json');
@@ -33,30 +32,25 @@ const segmentifyLoad = async () => {
     return data.responses[0][0].params;
 }
 
-const createRecComponent = ({root}) => {
-    segmentifyLoad()
-        .then((recData) => {
-            console.log(recData)
-            root.innerHTML = recSkeletonTemplate(recData);
-
-            selectTabs(recData)
-        })
-        .catch((err) => {
-            console.log('Some error occured while loading segmentify: ' + err)
-        })
+const createRecComponent = async ({root}) => {
+    try {
+        const recData = await segmentifyLoad();
+        console.log(recData)
+        renderRecSkeleton(root, recData);
+        initTabs(recData);
+    } catch (err) {
+        console.log('Some error occured while rendering segmentify widget: ' + err)
+    }
 }
 
-const recCardTemplate = (target, recData) => {
-    let root = document.querySelector(`[data-tab-key-pair="${target}"]`)
+const renderRecContent = (target, recData) => {
+    let root = document.querySelector(`[data-tab-key-pair="${target}"]`);
+
     root.innerHTML = `
-    
     <div class="swiper">
         <div class="swiper-wrapper">
         
-        ${recData.recommendedProducts[target].map((product, index) => {
-            let _shippingFee = 'hidden';
-            if (product.params.shippingFee === 'FREE') _shippingFee = '';
-            
+        ${recData.recommendedProducts[target].map((product) => {
             return `
             <div class="swiper-slide">
                 <div class="card">
@@ -72,7 +66,7 @@ const recCardTemplate = (target, recData) => {
                                 <span>${product.priceText}</span>
                             </div>
                             <div class="card-label">
-                                <span class="${_shippingFee} product-label-free-shipping"><i class="fas fa-truck"></i>Ücretsiz Kargo</span>
+                                <span class="${product.params.shippingFee === 'FREE' ? '' : 'hidden'} product-label-free-shipping"><i class="fas fa-truck"></i>Ücretsiz Kargo</span>
                             </div>
                         </div>
                     </a>
@@ -90,8 +84,8 @@ const recCardTemplate = (target, recData) => {
     `
 }
 
-const recSkeletonTemplate = (recData) => {
-    return `
+const renderRecSkeleton = (root, recData) => {
+    root.innerHTML = `
     <div class="main">
         <div class="main-title">
             <div class="wrapper">
@@ -100,28 +94,20 @@ const recSkeletonTemplate = (recData) => {
         </div>
         <div class="main-content">
             <div class="main-content-nav">
-                <div class="wrapper">
+                <div class=""><!--wrapper-->
                     <div class="tab-group cut-text-items">
-                        <!--TAB KISIMLARI-->
+                        <!--Tabs-->
                         ${recData.userCategories.map((category, index) => {
-                            let _tabActive = '';
                             let _category = category.split('>').pop();
-                            if (index === 0) _tabActive = "tab-active";
-                            
-                            let tabs = `<div class="${_tabActive} tab" data-tab-target="#tab-${index}" data-tab-key="${category}" title="${_category}">${_category}</div>`
-                            return tabs;
+                            return `<div class="tab ${index === 0 ? 'tab-active' : ''}" data-tab-target="#tab-${index}" data-tab-key="${category}" title="${_category}">${_category}</div>`
                         }).join('')}
                     </div>
                 </div>
             </div>
             <div class="main-content-content">
-                <!--TAB İÇERİK KISIMLARI-->
+                <!--Tab contents-->
                 ${recData.userCategories.map((category, index) => {
-                    let _tabActive = '';
-                    if (index === 0) _tabActive = "tab-content-active";
-                    
-                    let tabContents = `<div id="tab-${index}" class="${_tabActive} tab-content" data-tab-content data-tab-key-pair="${category}"></div>`
-                    return tabContents;
+                    return `<div id="tab-${index}" class="tab-content ${index === 0 ? 'tab-content-active' : ''}" data-tab-content data-tab-key-pair="${category}"></div>`
                 }).join('')}
             </div>
         </div>
@@ -130,7 +116,6 @@ const recSkeletonTemplate = (recData) => {
 }
 
 const swiper = () => {
-
     new Swiper(".swiper", {
         slidesPerView: "auto",
         spaceBetween: 15,

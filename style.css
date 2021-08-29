@@ -113,6 +113,7 @@ body {
 @media screen and (max-width: 768px) {
   #toast {
     min-width: 210px;
+    margin-left: -120px;
   }
 }
 #toast.show {
@@ -347,7 +348,7 @@ body {
   background-color: #eeeeee;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .card .card-content .card-price span {
   display: block;
@@ -370,6 +371,12 @@ body {
 @media screen and (max-width: 768px) {
   .card {
     max-width: 160px;
+  }
+  .card:hover {
+    box-shadow: none;
+  }
+  .card:hover .card-label {
+    display: unset;
   }
   .card .card-basket-add {
     display: block;

@@ -131,6 +131,7 @@ body {
 @media screen and (max-width: 768px) {
   #toast {
     min-width: 210px;
+    margin-left: -120px;
   }
 }
 
@@ -339,7 +340,7 @@ body {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////   CARD KISMI    ///////////////////////////////////
+///////////////////////////////   @CARD KISMI    ///////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
 .card {
@@ -407,7 +408,7 @@ body {
       background-color: #eeeeee;
       border-radius: 5px;
       font-weight: 600;
-      font-size: 1.5rem; //23px
+      font-size: 1.4rem; //23px
 
       span {
         display: block;
@@ -436,6 +437,14 @@ body {
 @media screen and (max-width: 768px) {
   .card {
     max-width: 160px;
+
+    &:hover {
+      box-shadow: none;
+
+      .card-label {
+        display: unset;
+      }
+    }
 
     .card-basket-add {
       display: block;

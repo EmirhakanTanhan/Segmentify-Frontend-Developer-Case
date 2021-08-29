@@ -23,6 +23,16 @@ body {
     padding: 0 18px;
   }
 }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .hidden {
   display: none;
 }
@@ -65,6 +75,92 @@ body {
   white-space: nowrap;
 }
 
+#toast {
+  display: flex;
+  border-radius: 7px;
+  visibility: hidden;
+  min-width: 300px;
+  margin-left: -150px;
+  background-color: #1d242b;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+#toast i {
+  background: #fff;
+  color: #3dbc3d;
+  font-size: 1.5rem;
+  align-self: center;
+  margin-right: 16px;
+  border-radius: 50px;
+}
+#toast div {
+  align-items: start;
+}
+#toast div span {
+  font-size: 1rem;
+}
+#toast div a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #9ec1ff;
+}
+
+@media screen and (max-width: 768px) {
+  #toast {
+    min-width: 210px;
+  }
+}
+#toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
 .swiper-wrapper {
   height: 100%;
 }

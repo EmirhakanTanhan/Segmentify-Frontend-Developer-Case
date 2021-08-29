@@ -21,10 +21,21 @@ body {
 .wrapper {
   padding: 0 35px;
 }
+
 @media screen and (max-width: 768px) {
   .wrapper {
     padding: 0 18px;
   }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {
@@ -75,6 +86,105 @@ body {
 }
 
 //////////////////////////////////////////////
+///////////// TOAST KISMI ///////////////////
+//////////////////////////////////////////////
+
+#toast {
+  display: flex;
+  border-radius: 7px;
+  visibility: hidden;
+  min-width: 300px;
+  margin-left: -150px;
+  background-color: #1d242b;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+
+  i {
+    background: #fff;
+    color: #3dbc3d;
+    font-size: 1.5rem;
+    align-self: center;
+    margin-right: 16px;
+    border-radius: 50px;
+  }
+
+  div {
+    align-items: start;
+
+    span {
+      font-size: 1rem;
+    }
+
+    a {
+      font-size: .9rem;
+      text-decoration: none;
+      color: #9ec1ff;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #toast {
+    min-width: 210px;
+  }
+}
+
+#toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+//////////////////////////////////////////////
 ///////////// SWIPER KISMI ///////////////////
 //////////////////////////////////////////////
 
@@ -120,7 +230,7 @@ body {
       width: 180px !important;
     }
   }
-  .swiper-button-prev, .swiper-button-next  {
+  .swiper-button-prev, .swiper-button-next {
     display: none !important;
   }
 }
@@ -287,7 +397,7 @@ body {
       padding: 11px 11px;
 
       span {
-        font-size: .9rem;//14px
+        font-size: .9rem; //14px
         font-weight: 500;
         color: #353535;
       }
@@ -297,7 +407,7 @@ body {
       background-color: #eeeeee;
       border-radius: 5px;
       font-weight: 600;
-      font-size: 1.5rem;//23px
+      font-size: 1.5rem; //23px
 
       span {
         display: block;
@@ -308,7 +418,7 @@ body {
 
     .card-label {
       padding: 5px 11px 0 11px;
-      font-size: .8rem;//14px
+      font-size: .8rem; //14px
       font-weight: 500;
 
       .product-label-free-shipping {
@@ -351,6 +461,7 @@ body {
             content: "• ";
             color: #6e6e6e;
           }
+
           i {
             display: none;
           }

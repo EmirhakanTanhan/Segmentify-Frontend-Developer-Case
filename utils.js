@@ -71,7 +71,7 @@ const renderRecContent = (target, recData) => {
                         </div>
                     </a>
                     <div class="card-basket-add">
-                        <button class="btn-blue">Sepete Ekle</button>
+                        <button class="btn-blue" onclick="notification()">Sepete Ekle</button>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,11 @@ const swiper = () => {
 }
 
 const notification = () => {
+    var x = document.querySelector("#toast");
 
+    x.className = "show";
+
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 

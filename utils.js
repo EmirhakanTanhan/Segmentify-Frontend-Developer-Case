@@ -31,7 +31,7 @@ const createRecComponent = async ({root, segmentifyLoad, recContent, recSkeleton
         renderRecSkeleton(root, recData, recSkeleton);
         initTabs(recData, recContent);
     } catch (err) {
-        console.log('Some error occured while rendering segmentify widget: ' + err)
+        console.log('Some error occured while rendering segmentify widget: ' + err);
     }
 }
 
@@ -53,7 +53,8 @@ const renderRecContent = (target, recData, recContent) => {
 }
 
 const renderRecSkeleton = (root, recData, recSkeleton) => {
-    root.innerHTML = recSkeleton(recData);
+    if (recSkeleton(recData)) root.innerHTML = recSkeleton(recData);
+    else throw 'recSkeleton: Not enough categories';
 }
 
 const swiper = () => {

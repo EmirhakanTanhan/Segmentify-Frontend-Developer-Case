@@ -7,6 +7,7 @@ createRecComponent({
         return data.responses[0][0].params;
     } ,
     recContent: (product) => {
+        if (!product.priceText || !product.image || !product.url || !product.params.shippingFee) return
         return `
         <div class="swiper-slide">
             <div class="card">
@@ -16,7 +17,9 @@ createRecComponent({
                     </div>
                     <div class="card-content">
                         <div class="card-title">
-                            <span class="cut-text">${product.name}</span>
+                            <span class="cut-text">${product.name ? product.name : ''}</span>
+                            <!--product.name-->
+                            <!--(Object.is(product.name, undefined) || Object.is(product.name, null)) ? '' : product.name-->
                         </div>
                         <div class="card-price">
                             <span>${product.priceText}</span>
@@ -34,6 +37,7 @@ createRecComponent({
         `
     },
     recSkeleton: (recData) => {
+        if (!(recData.userCategories.length > 1)) return
         return `
         <div class="main">
             <div class="main-title">

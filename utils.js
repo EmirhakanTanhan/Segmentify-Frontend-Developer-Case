@@ -1,9 +1,9 @@
-const initTabs = (recData, recContent) => {
+const initTabs = (recData, recContent, itemPerView) => {
     const tabs = document.querySelectorAll('[data-tab]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
     //Render first tabs content and initialize the swiper for it
     renderRecContent(tabs[0].dataset.tabKey, recData, recContent);
-    swiper();
+    swiper(itemPerView);
 
     //Add event listener to every tab
     tabs.forEach(tab => tab.addEventListener('click', () => {
@@ -21,15 +21,15 @@ const initTabs = (recData, recContent) => {
 
         //Render cards and then initialize swiper
         renderRecContent(tab.dataset.tabKey, recData, recContent);
-        swiper();
+        swiper(itemPerView);
     }));
 };
 
-const createRecComponent = async ({root, segmentifyLoad, recContent, recSkeleton}) => {
+const createRecComponent = async ({root, segmentifyLoad, recContent, recSkeleton, itemPerView}) => {
     try {
         const recData = await segmentifyLoad();
         renderRecSkeleton(root, recData, recSkeleton);
-        initTabs(recData, recContent);
+        initTabs(recData, recContent, itemPerView);
     } catch (err) {
         console.log('Some error occured while rendering segmentify widget: ' + err);
     }
@@ -48,6 +48,7 @@ const renderRecContent = (target, recData, recContent) => {
         </div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
     </div>
     `
 }
@@ -57,13 +58,45 @@ const renderRecSkeleton = (root, recData, recSkeleton) => {
     else throw 'recSkeleton: Not enough categories';
 }
 
-const swiper = () => {
+const swiper = (itemPerView) => {
     new Swiper(".swiper", {
-        slidesPerView: "auto",
-        spaceBetween: 15,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+        slidesPerView: itemPerView - 2 > 2 ? itemPerView - 2 : 2,
+        spaceBetween: 5,
+        freeMode: {
+            enabled: true,
+            minimumVelocity: 0.2,
+            momentumVelocityRatio: 0.4,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            dynamicBullets: true,
+        },
+        breakpoints: {
+            600: {
+                slidesPerView: itemPerView - 1 > 1 ? itemPerView - 1 : 2,
+                spaceBetween: 15,
+                freeMode: {
+                    enabled: true,
+                    minimumVelocity: 0.2,
+                    momentumVelocityRatio: 0.4,
+                },
+            },
+            768: {
+                slidesPerView: itemPerView - 1 > 1 ? itemPerView - 1 : 2,
+                spaceBetween: 15,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            },
+            1024: {
+                slidesPerView: itemPerView > 1 ? itemPerView : 2,
+                spaceBetween: 15,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            },
         },
     });
 }

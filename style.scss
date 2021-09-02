@@ -43,13 +43,15 @@ body {
 }
 
 .btn-blue {
-  width: 200px;
+  /*width: 200px;*/
+  width: 100%;
   background-color: #2dabf9;
   border-radius: 6px;
   cursor: pointer;
   color: #ffffff;
   font-size: 16px;
-  padding: 10px 36px;
+  /*padding: 10px 36px;*/
+  padding: 10px 5px;
   text-decoration: none;
   border: none;
 
@@ -66,7 +68,7 @@ body {
 @media screen and (max-width: 768px) {
   .btn-blue {
     background-color: #0688fa;
-    width: 160px;
+    /*width: 160px;*/
   }
 }
 
@@ -189,13 +191,21 @@ body {
 ///////////// SWIPER KISMI ///////////////////
 //////////////////////////////////////////////
 
-.swiper-wrapper {
+.swiper {
+  width: 100%;
   height: 100%;
-
-  .swiper-slide {
-    width: 220px !important;
-  }
+  padding-right: 8% !important;
 }
+
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+}
+/*.swiper-slide div {
+  display: block;
+  width: 100%;
+  height: 100%;
+}*/
 
 .swiper-button-prev {
   left: -53px !important;
@@ -223,12 +233,24 @@ body {
   color: grey !important;
 }
 
-@media screen and (max-width: 768px) {
-  .swiper-wrapper {
-    margin-left: 15px;
+.swiper-pagination {
+  display: none;
+}
 
-    .swiper-slide {
-      width: 180px !important;
+@media screen and (max-width: 768px) {
+  .swiper {
+    padding-right: 15% !important;
+
+    .swiper-wrapper {
+      margin-left: 15px;
+
+      .swiper-slide {
+        /*width: 180px !important;*/
+      }
+    }
+
+    .swiper-pagination {
+      display: block;
     }
   }
   .swiper-button-prev, .swiper-button-next {
@@ -345,7 +367,7 @@ body {
 
 .card {
   max-height: 400px;
-  max-width: 200px;
+  /*max-width: 200px;*/
   padding: 9px;
   margin-bottom: 30px;
   border: 1px solid #e8e8e8;
@@ -381,7 +403,7 @@ body {
     min-height: 180px;
 
     img {
-      min-width: 200px;
+      /*min-width: 200px;*/
       width: 100%;
       object-fit: cover;
       max-height: inherit;
@@ -408,12 +430,12 @@ body {
       background-color: #eeeeee;
       border-radius: 5px;
       font-weight: 600;
-      font-size: 1.4rem; //23px
+      font-size: 1.3rem;
 
       span {
         display: block;
         padding-left: 16px;
-        padding-top: 8px;
+        padding-top: 9px;
       }
     }
 
@@ -436,7 +458,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .card {
-    max-width: 160px;
+    /*max-width: 160px;*/
 
     &:hover {
       box-shadow: none;
@@ -455,14 +477,25 @@ body {
       min-height: 180px;
 
       img {
-        min-width: 160px;
+        /*min-width: 160px;*/
       }
     }
 
     .card-content {
       grid-template-rows: 48px 47px 72px;
 
+      .card-price {
+        font-size: 1.1rem;
+
+        span {
+          padding-left: 10px;
+          padding-top: 12px;
+        }
+      }
+
       .card-label {
+        font-size: 0.7rem;
+
         span {
           color: #6e6e6e;
 

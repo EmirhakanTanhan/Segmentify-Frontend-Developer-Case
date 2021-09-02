@@ -38,13 +38,15 @@ body {
 }
 
 .btn-blue {
-  width: 200px;
+  /*width: 200px;*/
+  width: 100%;
   background-color: #2dabf9;
   border-radius: 6px;
   cursor: pointer;
   color: #ffffff;
   font-size: 16px;
-  padding: 10px 36px;
+  /*padding: 10px 36px;*/
+  padding: 10px 5px;
   text-decoration: none;
   border: none;
 }
@@ -59,7 +61,7 @@ body {
 @media screen and (max-width: 768px) {
   .btn-blue {
     background-color: #0688fa;
-    width: 160px;
+    /*width: 160px;*/
   }
 }
 .cut-text {
@@ -162,13 +164,22 @@ body {
     opacity: 0;
   }
 }
-.swiper-wrapper {
+.swiper {
+  width: 100%;
   height: 100%;
-}
-.swiper-wrapper .swiper-slide {
-  width: 220px !important;
+  padding-right: 8% !important;
 }
 
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+}
+
+/*.swiper-slide div {
+  display: block;
+  width: 100%;
+  height: 100%;
+}*/
 .swiper-button-prev {
   left: -53px !important;
 }
@@ -193,12 +204,22 @@ body {
   color: grey !important;
 }
 
+.swiper-pagination {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
-  .swiper-wrapper {
+  .swiper {
+    padding-right: 15% !important;
+  }
+  .swiper .swiper-wrapper {
     margin-left: 15px;
   }
-  .swiper-wrapper .swiper-slide {
-    width: 180px !important;
+  .swiper .swiper-wrapper .swiper-slide {
+    /*width: 180px !important;*/
+  }
+  .swiper .swiper-pagination {
+    display: block;
   }
 
   .swiper-button-prev, .swiper-button-next {
@@ -294,7 +315,7 @@ body {
 }
 .card {
   max-height: 400px;
-  max-width: 200px;
+  /*max-width: 200px;*/
   padding: 9px;
   margin-bottom: 30px;
   border: 1px solid #e8e8e8;
@@ -325,7 +346,7 @@ body {
   min-height: 180px;
 }
 .card .card-img img {
-  min-width: 200px;
+  /*min-width: 200px;*/
   width: 100%;
   object-fit: cover;
   max-height: inherit;
@@ -348,12 +369,12 @@ body {
   background-color: #eeeeee;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .card .card-content .card-price span {
   display: block;
   padding-left: 16px;
-  padding-top: 8px;
+  padding-top: 9px;
 }
 .card .card-content .card-label {
   padding: 5px 11px 0 11px;
@@ -370,7 +391,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .card {
-    max-width: 160px;
+    /*max-width: 160px;*/
   }
   .card:hover {
     box-shadow: none;
@@ -386,10 +407,20 @@ body {
     min-height: 180px;
   }
   .card .card-img img {
-    min-width: 160px;
+    /*min-width: 160px;*/
   }
   .card .card-content {
     grid-template-rows: 48px 47px 72px;
+  }
+  .card .card-content .card-price {
+    font-size: 1.1rem;
+  }
+  .card .card-content .card-price span {
+    padding-left: 10px;
+    padding-top: 12px;
+  }
+  .card .card-content .card-label {
+    font-size: 0.7rem;
   }
   .card .card-content .card-label span {
     color: #6e6e6e;

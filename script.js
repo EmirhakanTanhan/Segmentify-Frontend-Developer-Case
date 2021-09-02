@@ -67,4 +67,5 @@ createRecComponent({
         </div>
         `
     },
+    itemPerView: 4,
 })

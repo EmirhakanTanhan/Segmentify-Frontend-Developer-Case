@@ -11,15 +11,13 @@ createRecComponent({
         return `
         <div class="swiper-slide">
             <div class="card">
-                <a class="card-link" title="${product.name}" href="${product.url}">
+                <a class="card-link" title="${product.name ? product.name : ''}" href="${product.url}">
                     <div class="card-img">
                         <img loading="lazy" src="${product.image}" alt="${product.name}">
                     </div>
                     <div class="card-content">
                         <div class="card-title">
                             <span class="cut-text">${product.name ? product.name : ''}</span>
-                            <!--product.name-->
-                            <!--(Object.is(product.name, undefined) || Object.is(product.name, null)) ? '' : product.name-->
                         </div>
                         <div class="card-price">
                             <span>${product.priceText}</span>
